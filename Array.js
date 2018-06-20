@@ -28,7 +28,17 @@ class myArray {
     let newAddress = this.ptr + this.length;
     fakeMem.set(newAddress, item);
   }
+
+  pop(){
+    if (this.length === 0){
+      return new Error('Index out of bounds');
+    }
+    const lastItem = fakeMem.get(this.ptr + this.length);
+    this.length --;
+    return lastItem;
+  }
 }
+
 
 
 function main(){
@@ -37,8 +47,11 @@ function main(){
   const foo = new myArray;
   console.log(foo);
   foo.push(3);
+  foo.push(5);
+  foo.push(7);
   console.log(foo);
-  console.log(fakeMem);
+  console.log(foo.pop());
+  console.log(foo);
 }
 
 main();
