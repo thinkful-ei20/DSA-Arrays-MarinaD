@@ -44,6 +44,15 @@ class myArray {
     this.length --;
     return lastItem;
   }
+
+  remove(index) {
+    if (index < 0 || index > this.length) {
+      throw new Error('Index error');
+    }
+    this.length--;
+    fakeMem.copy(this.ptr + index, this.ptr + index, this.length - index);
+    
+}
 }
 
 
@@ -81,14 +90,21 @@ function main(){
   // What is the length, capacity and memory address of your array? 
   //Explain the result of your program after adding the new lines of code
   /*
-  * Length will be 3, capacity will still be 12 and the memory address will still be 0
+  * Length will be 3, capacity will still be 12 and the memory address will still be 3.
   * By removing values from the array, we need to decrease the length to signify the other data can be overwritten.
   * Capacity will stay the same, as pop does not do anything with it.
-  * The memory address does not change because the first
-  * element of the array does not move around. 
+  * The memory address does not change because we did not have to resize. 
   */ 
   console.log(arr.get(0));
-  console.log(arr);
+  arr.remove(2);
+  arr.remove(1);
+  arr.remove(0);
+  arr.push('tauhida');
+  console.log(arr.get(0));
+  // We get a result of NaN because fakeMem is an array of floats and does not accept strings
+
+  //The resize method is necessary to increase the capacity of allocated memory when pushing items into the array
+  
 }
 
 main();
