@@ -2,7 +2,7 @@ const Memory = require('./Memory');
 
 const fakeMem = new Memory;
 
-class Array {
+class myArray {
   constructor(){
     this.length = 0;
     this.capacity = 0;
@@ -22,8 +22,23 @@ class Array {
 
   push(item){
     this.length++;
-    let newAddress = this.ptr + this.length +1;
+    if (this.capacity < this.length){
+      this.resize((this.length +1) * myArray.SIZE_RATIO);
+    }
+    let newAddress = this.ptr + this.length;
+    fakeMem.set(newAddress, item);
   }
 }
 
-module.exports = Array;
+
+function main(){
+  myArray.SIZE_RATIO = 3;
+
+  const foo = new myArray;
+  console.log(foo);
+  foo.push(3);
+  console.log(foo);
+  console.log(fakeMem);
+}
+
+main();
