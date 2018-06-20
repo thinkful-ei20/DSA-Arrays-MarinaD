@@ -51,8 +51,7 @@ class myArray {
     }
     this.length--;
     fakeMem.copy(this.ptr + index, this.ptr + index, this.length - index);
-    
-}
+  }
 }
 
 
@@ -104,7 +103,6 @@ function main(){
   // We get a result of NaN because fakeMem is an array of floats and does not accept strings
 
   //The resize method is necessary to increase the capacity of allocated memory when pushing items into the array
-  
 }
 
 main();
